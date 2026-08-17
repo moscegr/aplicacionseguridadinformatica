@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seguridad Informática | Inicio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['Fira Code', 'monospace'] },
+                    colors: {
+                        primary: '#dc2626', // Red 600 (Cybersecurity Alert)
+                        secondary: '#059669', // Emerald 600 (Secure)
+                        accent: '#ea580c', // Amber 600 (Warning)
+                        dark: '#0f172a' // Slate 900
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #ffffff; color: #334155; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); }
+    </style>
+</head>
+<body class="font-sans antialiased flex flex-col min-h-screen">
+
+    <nav class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-shield-halved text-3xl text-primary"></i>
+                    <span class="font-bold text-xl tracking-tight text-dark">Info<span class="text-primary">Sec</span> ASIN-03</span>
+                </div>
+                <div class="hidden md:flex space-x-6 overflow-x-auto text-sm">
+                    <a href="index.html" class="text-primary font-semibold border-b-2 border-primary py-5 whitespace-nowrap">Inicio</a>
+                    <a href="tema1_1.html" class="text-slate-500 hover:text-primary py-5 transition whitespace-nowrap">RA 1.1</a>
+                    <a href="tema1_2.html" class="text-slate-500 hover:text-primary py-5 transition whitespace-nowrap">RA 1.2</a>
+                    <a href="tema2_1.html" class="text-slate-500 hover:text-primary py-5 transition whitespace-nowrap">RA 2.1</a>
+                    <a href="tema2_2.html" class="text-slate-500 hover:text-primary py-5 transition whitespace-nowrap">RA 2.2</a>
+                    <a href="tema2_3.html" class="text-slate-500 hover:text-primary py-5 transition whitespace-nowrap">RA 2.3</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow max-w-7xl mx-auto w-full px-4 py-10">
+        <header class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-dark mb-4">Aplicación de la <span class="text-primary">Seguridad Informática</span></h1>
+            <p class="text-xl text-slate-500 max-w-3xl mx-auto">CONALEP - Formación Profesional en Informática. 72 Horas Semestrales | 4-5 Horas/Semana.</p>
+            <div class="mt-8 inline-block bg-red-50 border border-red-200 rounded-xl p-6 text-left shadow-sm max-w-4xl">
+                <p class="text-sm text-red-800 font-bold mb-2"><i class="fa-solid fa-user-secret mr-2"></i>Mensaje del Docente (Blue Team / Red Team):</p>
+                <p class="text-sm text-slate-700 leading-relaxed">¡Bienvenidos al campo de batalla digital! La seguridad no es un producto que se compra e instala; es un <strong>proceso constante</strong>. En estas 72 horas dejaremos de ser simples usuarios para convertirnos en arquitectos de defensas (Blue Team). Analizaremos cómo piensan los intrusos, entenderemos qué es la serie ISO 27000, blindaremos sistemas operativos (Firewalls, Cifrado, IPSEC), y ejecutaremos auditorías reales. Si un sistema es vulnerable, aquí aprenderemos a detectarlo antes de que sea tarde.</p>
+            </div>
+        </header>
+
+        <section class="mb-16 bg-white p-8 rounded-3xl shadow-sm border border-slate-200 relative overflow-hidden">
+            <div class="absolute top-0 right-0 bg-primary w-2 h-full"></div>
+            <h2 class="text-2xl font-bold mb-6 text-dark"><i class="fa-solid fa-crosshairs text-primary mr-2"></i>Metodología de las 72 Horas</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 hover:shadow-md transition">
+                    <i class="fa-solid fa-magnifying-glass-chart text-3xl text-primary mb-3"></i>
+                    <h3 class="font-bold text-lg text-dark mb-2">1. Análisis y Riesgo</h3>
+                    <p class="text-sm text-slate-600">Nadie defiende lo que no conoce. Iniciaremos creando matrices de riesgo, identificando vulnerabilidades físicas y lógicas, y auditando usuarios mediante ingeniería social inversa.</p>
+                </div>
+                <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 hover:shadow-md transition">
+                    <i class="fa-solid fa-server text-3xl text-primary mb-3"></i>
+                    <h3 class="font-bold text-lg text-dark mb-2">2. Hardening (Blindaje)</h3>
+                    <p class="text-sm text-slate-600">Pasaremos a la terminal. Cerraremos puertos, configuraremos Firewalls perimetrales, estableceremos políticas de grupo (GPO) y cifrado de discos.</p>
+                </div>
+                <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 hover:shadow-md transition">
+                    <i class="fa-solid fa-user-shield text-3xl text-primary mb-3"></i>
+                    <h3 class="font-bold text-lg text-dark mb-2">3. Monitoreo y Auditoría</h3>
+                    <p class="text-sm text-slate-600">Un sistema blindado hoy, es vulnerable mañana. Aprenderemos a leer bitácoras (logs), detectar intrusiones en tiempo real y emitir dictámenes profesionales.</p>
+                </div>
+            </div>
+        </section>
+
+        <h2 class="text-2xl font-bold mb-8 border-b-2 border-slate-200 pb-2"><i class="fa-solid fa-map-location-dot text-primary mr-2"></i>Mapa Táctico del Semestre (18 Semanas)</h2>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- Unidad 1 -->
+            <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm relative">
+                <div class="absolute top-0 right-8 bg-slate-800 text-white text-xs font-bold px-3 py-1 rounded-b-lg">Unidad 1 (27 hrs)</div>
+                <h3 class="text-xl font-bold text-dark mb-2 mt-4">Estándares y Protección</h3>
+                <p class="text-sm text-slate-500 mb-6">Diagnóstico, Matrices de Riesgo y Planificación Estratégica.</p>
+                
+                <div class="space-y-4">
+                    <a href="tema1_1.html" class="block bg-slate-50 p-5 rounded-2xl border border-slate-200 card-hover transition duration-300">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h4 class="font-bold text-primary text-md">RA 1.1 Determinación de Riesgos</h4>
+                                <p class="text-xs text-slate-500 mt-1">Semanas 1 a 3. Matrices, Vulnerabilidades Físicas/Lógicas. (15 hrs)</p>
+                            </div>
+                            <i class="fa-solid fa-arrow-right text-slate-400"></i>
+                        </div>
+                    </a>
+                    <a href="tema1_2.html" class="block bg-slate-50 p-5 rounded-2xl border border-slate-200 card-hover transition duration-300">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h4 class="font-bold text-primary text-md">RA 1.2 Planes de Seguridad</h4>
+                                <p class="text-xs text-slate-500 mt-1">Semanas 4 a 6. Normas ISO 27000, Políticas, Metas. (12 hrs)</p>
+                            </div>
+                            <i class="fa-solid fa-arrow-right text-slate-400"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Unidad 2 -->
+            <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm relative">
+                <div class="absolute top-0 right-8 bg-slate-800 text-white text-xs font-bold px-3 py-1 rounded-b-lg">Unidad 2 (45 hrs)</div>
+                <h3 class="text-xl font-bold text-dark mb-2 mt-4">Administración de Herramientas</h3>
+                <p class="text-sm text-slate-500 mb-6">Implementación técnica, monitoreo y auditorías cruzadas.</p>
+                
+                <div class="space-y-4">
+                    <a href="tema2_1.html" class="block bg-slate-50 p-5 rounded-2xl border border-slate-200 card-hover transition duration-300">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h4 class="font-bold text-secondary text-md">RA 2.1 Instalación y Hardening</h4>
+                                <p class="text-xs text-slate-500 mt-1">Semanas 7 a 11. Firewall, IPSEC, Cifrado, Antispyware. (23 hrs)</p>
+                            </div>
+                            <i class="fa-solid fa-arrow-right text-slate-400"></i>
+                        </div>
+                    </a>
+                    <a href="tema2_2.html" class="block bg-slate-50 p-5 rounded-2xl border border-slate-200 card-hover transition duration-300">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h4 class="font-bold text-secondary text-md">RA 2.2 Monitoreo Operativo</h4>
+                                <p class="text-xs text-slate-500 mt-1">Semanas 12 a 14. Logs, Bitácoras, Respaldos automatizados. (10 hrs)</p>
+                            </div>
+                            <i class="fa-solid fa-arrow-right text-slate-400"></i>
+                        </div>
+                    </a>
+                    <a href="tema2_3.html" class="block bg-slate-50 p-5 rounded-2xl border border-slate-200 card-hover transition duration-300 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 bg-accent text-white text-[10px] font-bold px-2 py-1 rounded-bl-lg">¡AUDITORÍA FINAL!</div>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h4 class="font-bold text-secondary text-md">RA 2.3 Auditoría y Control</h4>
+                                <p class="text-xs text-slate-500 mt-1">Semanas 15 a 18. Penetration Testing básico y Dictámenes. (12 hrs)</p>
+                            </div>
+                            <i class="fa-solid fa-arrow-right text-slate-400"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-slate-50 text-slate-500 py-8 text-center text-sm border-t border-slate-200 mt-auto">
+        <p>CONALEP - Docente de Ciberseguridad e Informática | Ciclo Escolar Actual</p>
+    </footer>
+</body>
+</html>
