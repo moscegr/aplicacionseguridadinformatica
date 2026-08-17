@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RA 2.3 | Desafío Final Ciberseguridad</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: { colors: { accent: '#ea580c', dark: '#0f172a', primary: '#dc2626' }, fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['Fira Code', 'monospace'] } } } }
+    </script>
+    <style> 
+        body { background-color: #ffffff; color: #334155; overflow-x: hidden; } 
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="font-sans antialiased flex flex-col min-h-screen">
+
+    <nav class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-4 flex justify-between items-center h-16">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-user-ninja text-2xl text-accent"></i>
+                <span class="font-bold text-lg text-dark">RA 2.3 & Práctica Final</span>
+            </div>
+            <div class="space-x-4">
+                <a href="tema2_2.html" class="text-sm text-slate-500 hover:text-accent transition"><i class="fa-solid fa-arrow-left"></i> Atrás</a>
+                <a href="index.html" class="text-sm text-dark font-bold bg-slate-200 hover:bg-slate-300 px-3 py-1 rounded transition">Terminar <i class="fa-solid fa-house"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow max-w-5xl mx-auto w-full px-4 py-10">
+        
+        <header class="mb-10">
+            <div class="inline-block bg-accent text-white text-xs font-bold px-3 py-1 rounded-full mb-3">12 Horas | Semanas 15 a 18</div>
+            <h1 class="text-3xl font-extrabold text-dark mb-4">Auditoría, Actualización de Parámetros y Dictamen</h1>
+            <p class="text-lg text-slate-600 mb-6">Hemos llegado a la fase final (Act) de la ISO 27000. Los sistemas ya están blindados y siendo monitoreados. Sin embargo, los hackers siempre encuentran métodos nuevos (Vulnerabilidades Zero-Day). Ahora tomaremos el rol de Auditores Independientes (Penetration Testers) para revisar el blindaje de nuestros compañeros e identificar agujeros.</p>
+            
+            <div class="bg-orange-50 border-l-4 border-accent p-5 rounded-r-xl">
+                <h3 class="font-bold text-orange-900 mb-2"><i class="fa-solid fa-file-signature mr-2"></i>El Dictamen Oficial y la Contingencia</h3>
+                <p class="text-sm text-orange-800">Un profesional técnico no solo dice "Te hackearon". Genera un dictamen impreso avalado por evidencia forense, establece un plan de respuesta a incidentes inmediato, parchea los servidores en caliente y reescribe la matriz de riesgos basada en los nuevos hallazgos.</p>
+            </div>
+        </header>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 text-dark flex items-center"><i class="fa-solid fa-clipboard-check text-accent mr-3"></i>Módulo de Auditoría</h2>
+            
+            <div class="flex overflow-x-auto border-b border-slate-200 mb-6 hide-scrollbar" role="tablist">
+                <button class="px-6 py-3 font-bold text-sm text-accent border-b-2 border-accent whitespace-nowrap focus:outline-none" onclick="openTab('sem15', this)">Semana 15: Plan de Revisión</button>
+                <button class="px-6 py-3 font-bold text-sm text-slate-500 border-b-2 border-transparent hover:text-accent whitespace-nowrap transition focus:outline-none" onclick="openTab('sem16', this)">Semana 16: Auditoría Cruzada</button>
+                <button class="px-6 py-3 font-bold text-sm text-slate-500 border-b-2 border-transparent hover:text-accent whitespace-nowrap transition focus:outline-none" onclick="openTab('sem17', this)">Semana 17: Planes Contingencia</button>
+            </div>
+
+            <div id="sem15" class="tab-content active bg-white p-6 md:p-8 rounded-2xl border border-slate-200 shadow-sm">
+                <h3 class="text-xl font-bold text-dark mb-4">Preparación del Plan de Revisión (Scope de Auditoría)</h3>
+                
+                <h4 class="font-bold text-accent mb-2"><i class="fa-solid fa-book-journal-whills mr-2"></i>Glosario Técnico:</h4>
+                <ul class="text-sm text-slate-600 list-disc ml-6 space-y-2 mb-6">
+                    <li><strong>Auditoría Informática:</strong> Proceso metódico para verificar objetivamente si el equipo y las redes cumplen con las políticas redactadas en el plan de seguridad.</li>
+                    <li><strong>Scope (Alcance):</strong> El límite legal y técnico de lo que tienes permitido hackear o revisar. Salirse del Scope en la vida real te lleva a la cárcel.</li>
+                    <li><strong>White-Box vs Black-Box Testing:</strong> White-Box: Tienes todos los passwords y mapas de red de la empresa para auditar. Black-Box: Tienes que simular ser un ruso anónimo sin nada de información (Testeo a ciegas).</li>
+                </ul>
+
+                <h4 class="font-bold text-accent mb-3"><i class="fa-solid fa-laptop-code mr-2"></i>5 Ejercicios Prácticos:</h4>
+                <ol class="text-sm text-slate-700 list-decimal ml-6 space-y-3">
+                    <li><strong>Definiendo el Alcance (Scope):</strong> Redacta en grupo los límites del examen final: "Está permitido intentar romper la contraseña local de la PC asignada. Queda TERMINANTEMENTE PROHIBIDO correr escaneos de Nmap hacia la subred de maestros de la escuela".</li>
+                    <li><strong>Herramientas de Reconocimiento (Ping/Tracert):</strong> Abre la terminal. Corre un `ping` al router de la escuela. Haz un `tracert 8.8.8.8` para mapear los saltos de internet. Así inicia un auditor a escanear un terreno.</li>
+                    <li><strong>Verificación de Políticas Clave:</strong> Tomen el AUP y la Política de Contraseñas de la Semana 5. Creen 5 ítems de control. Ej. "[ ] Revisar si el Firewall de Windows permite puertos externos".</li>
+                    <li><strong>Búsqueda de Configuraciones Corruptas:</strong> Investiguen el comando CMD <code>netsh advfirewall show allprofiles</code> y aprendan cómo un auditor lo usa para robar la "foto" completa del estado actual del firewall en 2 segundos y pegarla en su reporte.</li>
+                    <li><strong>Elaboración del Plan Formal de Auditoría:</strong> Armen el archivo: "Fecha, Hora, Auditores asginados, Máquina objetivo, Herramientas a usar (Visor de Eventos, CMD, secpol), y Métricas a verificar".</li>
+                </ol>
+            </div>
+
+            <div id="sem16" class="tab-content bg-white p-6 md:p-8 rounded-2xl border border-slate-200 shadow-sm">
+                <h3 class="text-xl font-bold text-dark mb-4">Ejecución del Ataque Simulado (Auditoría Cruzada)</h3>
+                
+                <h4 class="font-bold text-accent mb-2"><i class="fa-solid fa-book-journal-whills mr-2"></i>Glosario Técnico:</h4>
+                <ul class="text-sm text-slate-600 list-disc ml-6 space-y-2 mb-6">
+                    <li><strong>Penetration Testing (Pentest):</strong> Hacking ético. Romper la seguridad con el permiso del dueño para demostrar la vulnerabilidad y cobrar por decirles cómo taparlo.</li>
+                    <li><strong>Explotación de Vulnerabilidades:</strong> La fase donde el auditor logra materializar el ataque usando el fallo encontrado en la fase de análisis.</li>
+                    <li><strong>Reporte de Balance y Hallazgos:</strong> La tabulación forense donde mides cuántas métricas del plan original fracasaron bajo estrés.</li>
+                </ul>
+
+                <h4 class="font-bold text-accent mb-3"><i class="fa-solid fa-laptop-code mr-2"></i>5 Ejercicios Prácticos:</h4>
+                <ol class="text-sm text-slate-700 list-decimal ml-6 space-y-3">
+                    <li><strong>El Intercambio (Red Team vs Blue Team):</strong> Intercambien computadoras con el equipo de al lado (quienes configuraron contraseñas y firewalls en RA 2.1). Apliquen el checklist de auditoría.</li>
+                    <li><strong>Simulacro de Intrusión (Bypass USB):</strong> Intenta conectar una memoria USB con un archivo txt ("malware_falso.txt"). Verifica si la política restrictiva de Windows o Antivirus lo detuvo, o si el Blue Team de la otra PC reprobó su configuración.</li>
+                    <li><strong>Escaneo Local de Fallos:</strong> Usen el "Visor de Eventos" de la máquina objetivo. Anoten si los dueños limpiaron los logs (cubrieron sus huellas) o si pueden ver su actividad del día anterior. Si la pueden ver, la Auditoría es un éxito.</li>
+                    <li><strong>Comparación vs Línea Base (Balance de Resultados):</strong> Tomen las Metas del RA 1.2. Métrica esperada: "Contraseñas > 12 chars". Realidad hallada por auditor: "Contraseña es 'admin' ". Anoten el hallazgo como "NO CONFORME. RIESGO CRÍTICO".</li>
+                    <li><strong>Elaboración de la Matriz Comparativa:</strong> Creen un cuadro Excel con las columnas: Política Auditada, Resultado Esperado, Resultado Obtenido Físicamente, Nivel de Peligro, Observaciones Técnicas.</li>
+                </ol>
+            </div>
+
+            <div id="sem17" class="tab-content bg-white p-6 md:p-8 rounded-2xl border border-slate-200 shadow-sm">
+                <h3 class="text-xl font-bold text-dark mb-4">Planes de Contingencia y Actualización de Requerimientos</h3>
+                
+                <h4 class="font-bold text-accent mb-2"><i class="fa-solid fa-book-journal-whills mr-2"></i>Glosario Técnico:</h4>
+                <ul class="text-sm text-slate-600 list-disc ml-6 space-y-2 mb-6">
+                    <li><strong>Plan de Respuesta a Incidentes (IRP):</strong> El manual de bomberos de sistemas. Qué hacer exactamente desde el minuto 0 al minuto 60 después de que descubres un ataque. (Ej. Aislar subredes, apagar switches, contactar al equipo legal).</li>
+                    <li><strong>Plan de Recuperación de Desastres (DRP):</strong> Cómo revivir y reinstalar la infraestructura muerta usando los Backups offline (Regla 3-2-1).</li>
+                    <li><strong>Escalamiento de Problemas:</strong> Entender que un técnico nivel 1 no decide apagar el datacenter completo; escala el evento al CISO.</li>
+                </ul>
+
+                <h4 class="font-bold text-accent mb-3"><i class="fa-solid fa-laptop-code mr-2"></i>5 Ejercicios Prácticos:</h4>
+                <ol class="text-sm text-slate-700 list-decimal ml-6 space-y-3">
+                    <li><strong>Definir Escalamiento de Eventos (Árbol de Decisión):</strong> Dibuja un organigrama. Si el antivirus bloquea un adware local -> Silencio. Si 15 PCs reportan secuestro criptográfico al mismo tiempo -> Llamada roja al Gerente TI -> Cortar fibra óptica del ISP principal.</li>
+                    <li><strong>Mitigación Correctiva de Hallazgos (El Act de ISO):</strong> Basados en la matriz comparativa de la auditoría anterior, si hallaste que los puertos RDP (3389) estaban expuestos, escribe la instrucción exacta de Firewall para que los dueños de la PC parchen el error.</li>
+                    <li><strong>Plan de Aislamiento de Subredes:</strong> Explica, mediante comandos como `ipconfig /release` o deshabilitando el adaptador en `ncpa.cpl`, cómo cortarle las piernas instantáneamente a un malware gusano antes de que salte a otra PC.</li>
+                    <li><strong>Identificar Nuevos Requerimientos (Hardware y Licencias):</strong> Si la auditoría probó que el Antivirus local no puede detectar ransomware moderno, redacta un requerimiento ejecutivo solicitando la compra de licencias EDR corporativas (Endpoint Detection and Response).</li>
+                    <li><strong>Formato DRP Básico:</strong> Diseña una ficha técnica para DRP: Prioridad de servidores a recuperar primero, persona encargada de conectar el disco físico de respaldo, y tiempo máximo estimado para restablecer ventas y operaciones.</li>
+                </ol>
+            </div>
+        </section>
+
+        <section class="bg-dark p-8 md:p-10 rounded-3xl text-white border border-slate-700 shadow-2xl relative overflow-hidden">
+            <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+CjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0ibm9uZSI+PC9yZWN0Pgo8cGF0aCBkPSJNMCAwIEwyMCAwIEwyMCAyMCBMMCAyMCBaIiBzdHJva2U9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiIGZpbGw9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSI+PC9wYXRoPgo8L3N2Zz4=')] opacity-20 pointer-events-none"></div>
+            
+            <div class="relative z-10">
+                <div class="flex flex-col md:flex-row items-start md:items-center gap-4 mb-6 border-b border-slate-700 pb-5">
+                    <div class="bg-accent/20 p-3 rounded-xl border border-accent/30">
+                        <i class="fa-solid fa-file-contract text-4xl text-accent"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-accent">Desafío Semestral: Emisión del Dictamen (S. 18)</h2>
+                        <p class="text-sm md:text-base text-slate-400 font-mono mt-1">Conclusión Integradora: 3 Informes Oficiales de Ciberseguridad e Informática Forense.</p>
+                    </div>
+                </div>
+
+                <p class="text-slate-300 mb-6 text-sm md:text-base max-w-3xl leading-relaxed">Para aprobar este módulo de 72 horas y cerrar la capacitación de la rúbrica 2.3.1, cada equipo deberá consolidar toda la evidencia recolectada durante la auditoría en un expediente técnico profesional que fungirá como el entregable ejecutivo para la dirección de la empresa ficticia auditada.</p>
+
+                <div class="bg-slate-900 border border-slate-600 rounded-xl p-6 mb-6">
+                    <h3 class="text-lg font-bold text-white mb-4"><i class="fa-solid fa-list-check text-accent mr-2"></i>Entregables Estrictos para Certificación:</h3>
+                    <ul class="list-disc ml-6 space-y-3 text-sm text-slate-400">
+                        <li><strong>Informe I: Resultados Generados de Vulnerabilidad.</strong> Explicar si el equipo de cómputo/red auditado soportó los ataques o falló miserablemente en aislar puertos y bloquear software externo.</li>
+                        <li><strong>Informe II: Balance de Políticas (ISO 27000).</strong> Una matriz formal que muestre qué reglas de la política AUP (del RA 1.2) fueron violadas y si el Firewall/Antivirus (del RA 2.1) estaba mal configurado respecto a la línea base.</li>
+                        <li><strong>Informe III: Requerimientos, Riesgos y DRP.</strong> Recrear la matriz de riesgos cruzada inicial (del RA 1.1) elevando el nivel de severidad de las nuevas amenazas. Sumar el Plan de Contingencia inmediato dictando los parches a aplicar y posibles adquisiciones de nuevo equipo IPS.</li>
+                        <li><strong>Carátula Pericial Obligatoria:</strong> El expediente final (PDF) DEBE incluir datos formales: Lugar de auditoría, periodo de horas trabajadas, IP de la máquina auditada (Sistema Analizado), y FIRMAS físicas/digitales de los auditores y de los ingenieros auditados aceptando la falla.</li>
+                    </ul>
+                </div>
+                
+                <p class="font-bold text-accent text-center mt-8 uppercase tracking-widest text-sm"><i class="fa-solid fa-lock mr-2"></i>Fin de Transmisión. Servidores Asegurados.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-50 text-slate-500 py-8 text-center text-sm border-t border-slate-200 mt-auto">
+        <p>CONALEP - Docente de Ciberseguridad e Informática | Ciclo Escolar Actual</p>
+    </footer>
+
+    <script>
+        function openTab(tabId, btn) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('button[role="tab"]').forEach(b => {
+                b.classList.remove('text-accent', 'border-accent');
+                b.classList.add('text-slate-500', 'border-transparent');
+            });
+            document.getElementById(tabId).classList.add('active');
+            btn.classList.remove('text-slate-500', 'border-transparent');
+            btn.classList.add('text-accent', 'border-accent');
+        }
+        document.querySelectorAll('button[onclick^="openTab"]').forEach(btn => btn.setAttribute('role', 'tab'));
+    </script>
+</body>
+</html>
