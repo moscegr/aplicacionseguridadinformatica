@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RA 1.1 | Seguridad Informática</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: { colors: { primary: '#dc2626', dark: '#0f172a' }, fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['Fira Code', 'monospace'] } } } }
+    </script>
+    <style> 
+        body { background-color: #ffffff; color: #334155; } 
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="font-sans antialiased flex flex-col min-h-screen">
+
+    <nav class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-4 flex justify-between items-center h-16">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-triangle-exclamation text-2xl text-primary"></i>
+                <span class="font-bold text-lg text-dark">RA 1.1</span>
+            </div>
+            <div class="space-x-4">
+                <a href="index.html" class="text-sm text-slate-500 hover:text-primary transition"><i class="fa-solid fa-house"></i> Inicio</a>
+                <a href="tema1_2.html" class="text-sm text-primary font-bold transition">Siguiente <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow max-w-4xl mx-auto w-full px-4 py-10">
+        <header class="mb-10">
+            <div class="inline-block bg-primary text-white text-xs font-bold px-3 py-1 rounded-full mb-3">15 Horas | Semanas 1 a 3</div>
+            <h1 class="text-3xl font-extrabold text-dark mb-4">Determinación de Riesgos y Vulnerabilidades</h1>
+            <p class="text-lg text-slate-600 mb-6">El primer paso del Blue Team es la recolección de inteligencia (Reconnaissance). No puedes proteger un sistema si no sabes qué tienes, dónde está, y cuáles son sus puntos débiles físicos y lógicos.</p>
+            
+            <div class="bg-red-50 border-l-4 border-primary p-4 rounded-r-lg">
+                <p class="text-sm text-red-800"><strong>El Triángulo CIA (CIA Triad):</strong> Toda la ciberseguridad se basa en defender tres pilares: <strong>Confidencialidad</strong> (solo lee quien debe), <strong>Integridad</strong> (la data no ha sido alterada) y <strong>Disponibilidad</strong> (el sistema funciona cuando se requiere).</p>
+            </div>
+        </header>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 text-dark border-b pb-2"><i class="fa-solid fa-calendar-week text-primary mr-2"></i>Plan de Clases y Auditorías</h2>
+            
+            <div class="flex overflow-x-auto border-b border-slate-200 mb-6" role="tablist">
+                <button class="px-6 py-3 font-bold text-sm text-primary border-b-2 border-primary whitespace-nowrap focus:outline-none" onclick="openTab('sem1', this)">Semana 1: Riesgos Lógicos</button>
+                <button class="px-6 py-3 font-bold text-sm text-slate-500 border-b-2 border-transparent hover:text-primary whitespace-nowrap transition focus:outline-none" onclick="openTab('sem2', this)">Semana 2: Riesgos Físicos</button>
+                <button class="px-6 py-3 font-bold text-sm text-slate-500 border-b-2 border-transparent hover:text-primary whitespace-nowrap transition focus:outline-none" onclick="openTab('sem3', this)">Semana 3: Matrices de Riesgo</button>
+            </div>
+
+            <div id="sem1" class="tab-content active bg-white p-6 md:p-8 rounded-2xl border border-slate-200 shadow-sm">
+                <h3 class="text-xl font-bold text-dark mb-4">Ingeniería Social y Riesgos Lógicos</h3>
+                
+                <h4 class="font-bold text-primary mb-2"><i class="fa-solid fa-book-journal-whills mr-2"></i>Glosario Técnico:</h4>
+                <ul class="text-sm text-slate-600 list-disc ml-6 space-y-2 mb-6">
+                    <li><strong>Vulnerabilidad:</strong> Un agujero o fallo en el diseño del sistema o en el comportamiento humano.</li>
+                    <li><strong>Ransomware:</strong> Malware que secuestra (cifra) los datos del disco duro y exige un pago en criptomonedas para liberar la clave de descifrado. Amenaza #1 mundial.</li>
+                    <li><strong>Ingeniería Social:</strong> Hackear a la persona, no a la máquina. Manipular psicológicamente a un empleado para que revele contraseñas o abra archivos adjuntos infectados.</li>
+                    <li><strong>DDoS (Denial of Service):</strong> Ataque lógico donde miles de peticiones basura saturan un servidor hasta colapsarlo, rompiendo la "Disponibilidad" (Letra A del CIA Triad).</li>
+                </ul>
+
+                <h4 class="font-bold text-primary mb-2"><i class="fa-solid fa-sitemap mr-2"></i>Lógica de Detección:</h4>
+                <div class="bg-slate-900 text-slate-300 text-xs font-mono p-4 rounded-lg mb-6">
+                    [EVALUACIÓN DE INFECCIÓN LÓGICA]<br>
+                    1. Identificar vector de entrada (Ej. Correo "Factura_urgente.pdf.exe")<br>
+                    2. El usuario ejecuta el Payload por falta de capacitación.<br>
+                    3. El malware escala privilegios locales.<br>
+                    4. Resultado: Pérdida total de Integridad y Confidencialidad.<br>
+                    -> CONTRAMEDIDA: Políticas restrictivas de software (AppLocker) y capacitación.
+                </div>
+
+                <h4 class="font-bold text-primary mb-3"><i class="fa-solid fa-laptop-code mr-2"></i>5 Ejercicios Prácticos:</h4>
+                <ol class="text-sm text-slate-700 list-decimal ml-6 space-y-3">
+                    <li><strong>Phishing Simulado:</strong> Redacta un correo electrónico falso (Phishing) dirigido al director de la escuela pidiendo sus credenciales. Intercambien correos en equipo y analicen qué "trampas psicológicas" usaron (urgencia, autoridad).</li>
+                    <li><strong>Auditoría de Contraseñas:</strong> En el laboratorio, investiguen cuáles son las 10 contraseñas más hackeadas este año. Escriban una política de 3 reglas inquebrantables para crear contraseñas seguras en su entorno.</li>
+                    <li><strong>Identificación de Malware:</strong> Investiguen el caso real del ransomware "WannaCry". Redacten un reporte de media página explicando qué vulnerabilidad explotaba y cómo rompió la disponibilidad de hospitales enteros.</li>
+                    <li><strong>Cuestionario de Diagnóstico Humano:</strong> Diseñen una encuesta de 5 preguntas (opción múltiple) para evaluar si un profesor sabe distinguir un enlace seguro de uno malicioso.</li>
+                    <li><strong>Cacería de Extensiones Ocultas:</strong> En Windows, vayan a Opciones de Carpeta y desmarquen "Ocultar extensiones de archivo para tipos de archivo conocidos". Expliquen por qué esta simple acción previene ataques lógicos tipo "foto.jpg.exe".</li>
+                </ol>
+            </div>
+
+            <div id="sem2" class="tab-content bg-white p-6 md:p-8 rounded-2xl border border-slate-200 shadow-sm">
+                <h3 class="text-xl font-bold text-dark mb-4">Seguridad Física e Inventario de Recursos</h3>
+                
+                <h4 class="font-bold text-primary mb-2"><i class="fa-solid fa-book-journal-whills mr-2"></i>Glosario Técnico:</h4>
+                <ul class="text-sm text-slate-600 list-disc ml-6 space-y-2 mb-6">
+                    <li><strong>Riesgo Físico:</strong> Amenazas tangibles que pueden dañar el hardware. Incluye desastres naturales (sismos, fuego), fallas eléctricas y robo físico.</li>
+                    <li><strong>Centro de Datos (Site):</strong> Cuarto aislado con temperatura controlada donde residen los servidores vitales de la red.</li>
+                    <li><strong>UPS (Uninterruptible Power Supply):</strong> Batería de respaldo que filtra picos de voltaje y da tiempo de apagar servidores correctamente ante un apagón.</li>
+                </ul>
+
+                <h4 class="font-bold text-primary mb-2"><i class="fa-solid fa-sitemap mr-2"></i>Lógica de Inspección:</h4>
+                <div class="bg-slate-900 text-slate-300 text-xs font-mono p-4 rounded-lg mb-6">
+                    [RUTINA DE INSPECCIÓN DEL SITE]<br>
+                    IF Temperatura > 22°C THEN ALERTA("Riesgo Térmico")<br>
+                    IF Puerta_Acceso == "Cerradura Tradicional" THEN RECOMENDAR("Biométrico")<br>
+                    IF Extintor_Tipo != "Gas Halón / CO2" THEN PELIGRO("El agua destruirá el hardware")
+                </div>
+
+                <h4 class="font-bold text-primary mb-3"><i class="fa-solid fa-laptop-code mr-2"></i>5 Ejercicios Prácticos:</h4>
+                <ol class="text-sm text-slate-700 list-decimal ml-6 space-y-3">
+                    <li><strong>Levantamiento de Inventario (Ficha Técnica):</strong> Realicen una inspección visual de una computadora del laboratorio. Documenten: MAC Address, RAM, Sistema Operativo, estado de puertos USB y si el gabinete tiene candado físico.</li>
+                    <li><strong>Auditoría Visual de Riesgos Físicos:</strong> Recorran el laboratorio de cómputo. Anoten 3 riesgos físicos reales (ej. cables sueltos, goteras cerca de contactos, falta de ventilación) y propongan soluciones.</li>
+                    <li><strong>Tailgating (Seguimiento):</strong> Expliquen el concepto de "Tailgating" (cuando un intruso se cuela detrás de un empleado autorizado que abre una puerta segura). Diseñen un letrero de advertencia para evitar esta práctica en su empresa ficticia.</li>
+                    <li><strong>Simulacro de Apagón:</strong> Si ocurre un corte de luz en pleno procesamiento de la base de datos de calificaciones, ¿qué sucede con la integridad de los datos? Expliquen el rol crítico de un UPS en la retención de RAM.</li>
+                    <li><strong>Destrucción Segura de Medios:</strong> Borrar un archivo y vaciar la papelera NO destruye los datos. Investiguen métodos físicos (desmagnetización, trituración) para desechar un disco duro con datos confidenciales del gobierno.</li>
+                </ol>
+            </div>
+
+            <div id="sem3" class="tab-content bg-white p-6 md:p-8 rounded-2xl border border-slate-200 shadow-sm">
+                <h3 class="text-xl font-bold text-dark mb-4">Construcción de Matrices de Riesgo</h3>
+                
+                <h4 class="font-bold text-primary mb-2"><i class="fa-solid fa-book-journal-whills mr-2"></i>Glosario Técnico:</h4>
+                <ul class="text-sm text-slate-600 list-disc ml-6 space-y-2 mb-6">
+                    <li><strong>Matriz de Riesgo:</strong> Herramienta matemática y visual que cruza la "Probabilidad" de que un evento ocurra contra el "Impacto" que tendría en el negocio, para definir prioridades.</li>
+                    <li><strong>Impacto (Severidad):</strong> El costo (monetario, reputacional u operativo) de la brecha. (Bajo, Medio, Alto, Crítico).</li>
+                    <li><strong>Probabilidad (Frecuencia):</strong> Qué tan factible es que el ataque se materialice.</li>
+                </ul>
+
+                <h4 class="font-bold text-primary mb-2"><i class="fa-solid fa-sitemap mr-2"></i>Cálculo de Riesgo:</h4>
+                <div class="bg-slate-900 text-green-400 text-xs font-mono p-4 rounded-lg mb-6">
+                    Riesgo_Total = Probabilidad * Impacto<br>
+                    <br>
+                    Ejemplo: Inundación del SITE<br>
+                    Probabilidad (1 a 5): 1 (Muy baja, estamos en 2do piso)<br>
+                    Impacto (1 a 5): 5 (Pérdida total)<br>
+                    Riesgo = 1 * 5 = 5 (Riesgo Medio - Aceptable)<br>
+                    <br>
+                    Ejemplo: Infección por USB infectado<br>
+                    Probabilidad: 5 (Diario conectan memorias)<br>
+                    Impacto: 4 (Robo de información)<br>
+                    Riesgo = 5 * 4 = 20 (Riesgo CRÍTICO - Requiere bloqueo inmediato)
+                </div>
+
+                <h4 class="font-bold text-primary mb-3"><i class="fa-solid fa-laptop-code mr-2"></i>5 Ejercicios Prácticos:</h4>
+                <ol class="text-sm text-slate-700 list-decimal ml-6 space-y-3">
+                    <li><strong>Evaluación Cuantitativa:</strong> Abran Excel o Google Sheets. Creen una tabla calculando el Riesgo Total de 5 amenazas (Robo de laptop, Virus de red, Terremoto, Empleado deshonesto, Falla de disco). Usen multiplicaciones automáticas.</li>
+                    <li><strong>Mapa de Calor (Heatmap):</strong> Den formato condicional a la tabla anterior. Los resultados del 1-6 en Verde (Riesgo Bajo), 7-14 en Amarillo (Medio), y 15-25 en Rojo (Crítico).</li>
+                    <li><strong>Elaboración de Cuestionario de Auditoría:</strong> Redacten 5 preguntas técnicas dirigidas al "Administrador de Redes" para mapear riesgos. Ejemplo: "¿Tienen bloqueados los puertos USB mediante políticas de Windows Server?".</li>
+                    <li><strong>Reporte de Inteligencia (Ejecutivo):</strong> Escriban el Informe Inicial para el Director. Expliquen en un párrafo cuál es el riesgo #1 de color ROJO detectado en su matriz y por qué requiere presupuesto urgente.</li>
+                    <li><strong>Mitigación vs Aceptación:</strong> No todo se puede proteger por costos. Discutan en grupo un riesgo tecnológico tan caro de mitigar que la empresa simplemente tendría que "Aceptarlo" o comprar un seguro.</li>
+                </ol>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        function openTab(tabId, btn) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('button[role="tab"]').forEach(b => {
+                b.classList.remove('text-primary', 'border-primary');
+                b.classList.add('text-slate-500', 'border-transparent');
+            });
+            document.getElementById(tabId).classList.add('active');
+            btn.classList.remove('text-slate-500', 'border-transparent');
+            btn.classList.add('text-primary', 'border-primary');
+        }
+        // Inicializar botones para JS
+        document.querySelectorAll('button[onclick^="openTab"]').forEach(btn => btn.setAttribute('role', 'tab'));
+    </script>
+</body>
+</html>
