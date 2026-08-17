@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RA 2.1 | Seguridad Informática</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: { colors: { secondary: '#059669', dark: '#0f172a' }, fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['Fira Code', 'monospace'] } } } }
+    </script>
+    <style> 
+        body { background-color: #ffffff; color: #334155; } 
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="font-sans antialiased flex flex-col min-h-screen">
+
+    <nav class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-4 flex justify-between items-center h-16">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-server text-2xl text-secondary"></i>
+                <span class="font-bold text-lg text-dark">RA 2.1</span>
+            </div>
+            <div class="space-x-4">
+                <a href="tema1_2.html" class="text-sm text-slate-500 hover:text-secondary transition"><i class="fa-solid fa-arrow-left"></i> Atrás</a>
+                <a href="tema2_2.html" class="text-sm text-secondary font-bold transition">Siguiente <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow max-w-4xl mx-auto w-full px-4 py-10">
+        <header class="mb-10">
+            <div class="inline-block bg-secondary text-white text-xs font-bold px-3 py-1 rounded-full mb-3">23 Horas | Semanas 7 a 11</div>
+            <h1 class="text-3xl font-extrabold text-dark mb-4">Administración e Instalación de Controles (Hardening)</h1>
+            <p class="text-lg text-slate-600 mb-6">Dejamos el papel y pasamos a la terminal. Es hora de implementar técnicamente el Plan de Seguridad (Fase DO del ciclo Deming). Vamos a endurecer el sistema (Hardening) cerrando puertas de red, bloqueando permisos locales y cifrando túneles de comunicación.</p>
+            
+            <div class="bg-emerald-50 border-l-4 border-secondary p-4 rounded-r-lg">
+                <p class="text-sm text-emerald-900"><strong>Concepto Clave - Defensa en Profundidad (Defense in Depth):</strong> Nunca confíes en un solo candado. Si el intruso pasa el Firewall Perimetral, se debe topar con el Firewall Local. Si pasa ese, se topa con un Cifrado de archivos. Retrasar al hacker da tiempo al Blue Team para reaccionar.</p>
+            </div>
+        </header>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 text-dark border-b pb-2"><i class="fa-solid fa-terminal text-secondary mr-2"></i>Laboratorios de Configuración</h2>
+            
+            <div class="flex overflow-x-auto border-b border-slate-200 mb-6 hide-scrollbar" role="tablist">
+                <button class="px-5 py-3 font-bold text-sm text-secondary border-b-2 border-secondary whitespace-nowrap focus:outline-none" onclick="openTab('sem7', this)">Semana 7: SO y Cuentas</button>
+                <button class="px-5 py-3 font-bold text-sm text-slate-500 border-b-2 border-transparent hover:text-secondary whitespace-nowrap transition focus:outline-none" onclick="openTab('sem8', this)">Semana 8: Permisos y Cifrado</button>
+                <button class="px-5 py-3 font-bold text-sm text-slate-500 border-b-2 border-transparent hover:text-secondary whitespace-nowrap transition focus:outline-none" onclick="openTab('sem9', this)">Semana 9: Firewalls</button>
+                <button class="px-5 py-3 font-bold text-sm text-slate-500 border-b-2 border-transparent hover:text-secondary whitespace-nowrap transition focus:outline-none" onclick="openTab('sem10', this)">Semana 10: IDS / Antivirus</button>
+                <button class="px-5 py-3 font-bold text-sm text-slate-500 border-b-2 border-transparent hover:text-secondary whitespace-nowrap transition focus:outline-none" onclick="openTab('sem11', this)">Semana 11: Túneles Seguros</button>
+            </div>
+
+            <div id="sem7" class="tab-content active bg-white p-6 md:p-8 rounded-2xl border border-slate-200 shadow-sm">
+                <h3 class="text-xl font-bold text-dark mb-4">Hardening del Sistema Operativo y Cuentas</h3>
+                
+                <h4 class="font-bold text-secondary mb-2"><i class="fa-solid fa-book-journal-whills mr-2"></i>Glosario Técnico:</h4>
+                <ul class="text-sm text-slate-600 list-disc ml-6 space-y-2 mb-6">
+                    <li><strong>Hardening:</strong> Proceso de reducción de vulnerabilidades de un sistema operativo, eliminando software innecesario, cerrando puertos no usados y aplicando parches.</li>
+                    <li><strong>WSUS / SCCM:</strong> Servidores de actualizaciones centralizadas. En empresas no dejes que cada PC se actualice sola por internet; ahorras ancho de banda descargando una vez y empujando el parche por la red LAN.</li>
+                    <li><strong>UAC (User Account Control):</strong> La pantalla de Windows que se oscurece y pide permisos de Administrador antes de instalar algo, bloqueando instalaciones sigilosas de malware.</li>
+                </ul>
+
+                <h4 class="font-bold text-secondary mb-2"><i class="fa-solid fa-sitemap mr-2"></i>Lógica de Control de Actualizaciones:</h4>
+                <div class="bg-slate-900 text-slate-300 text-xs font-mono p-4 rounded-lg mb-6">
+                    [POLÍTICA DE GPO (Group Policy Object)]<br>
+                    Path: Configuración del equipo > Plantillas adm. > Componentes de Windows > Windows Update<br>
+                    Ajuste: Configurar Actualizaciones Automáticas -> "Habilitado"<br>
+                    Opcion: 4 (Descargar automáticamente y programar la instalación)<br>
+                    Hora: Día 0 (Todos los días) a las 03:00 AM.
+                </div>
+
+                <h4 class="font-bold text-secondary mb-3"><i class="fa-solid fa-laptop-code mr-2"></i>5 Ejercicios Prácticos:</h4>
+                <ol class="text-sm text-slate-700 list-decimal ml-6 space-y-3">
+                    <li><strong>Creación de Cuentas Limitadas:</strong> Crea un usuario local estándar en Windows. Intenta instalar un programa (ej. 7-Zip). Observa y documenta cómo el sistema detiene la ejecución pidiendo credenciales Admin.</li>
+                    <li><strong>Forzar Políticas de Contraseña (Local Secpol):</strong> Abre <code>secpol.msc</code>. Navega a "Políticas de contraseñas". Configura: Longitud mínima = 10, y "Las contraseñas deben cumplir los requisitos de complejidad". Intenta cambiar tu clave a "12345" y observa el error del sistema.</li>
+                    <li><strong>Auditoría de Software Basura (Bloatware):</strong> Abre el Panel de Control. Haz una lista del software preinstalado que la empresa NO necesita (juegos, utilerías obsoletas). Explica por qué borrarlo reduce la "Superficie de Ataque".</li>
+                    <li><strong>Configuración del UAC:</strong> Cambia el nivel del UAC al máximo (Avisar siempre). Documenta en qué escenarios (modificar registros, instalar .exe) el sistema interviene.</li>
+                    <li><strong>Manual de Procedimiento (Entregable):</strong> Escribe un mini-manual de media cuartilla con capturas de pantalla de los pasos para configurar actualizaciones obligatorias en Windows 10/11.</li>
+                </ol>
+            </div>
+
+            <div id="sem8" class="tab-content bg-white p-6 md:p-8 rounded-2xl border border-slate-200 shadow-sm">
+                <h3 class="text-xl font-bold text-dark mb-4">Control Lógico: Permisos NTFS y Cifrado de Datos</h3>
+                
+                <h4 class="font-bold text-secondary mb-2"><i class="fa-solid fa-book-journal-whills mr-2"></i>Glosario Técnico:</h4>
+                <ul class="text-sm text-slate-600 list-disc ml-6 space-y-2 mb-6">
+                    <li><strong>NTFS (New Technology File System):</strong> Sistema de archivos moderno de Windows que permite otorgar permisos extremadamente granulares a nivel de archivo/usuario.</li>
+                    <li><strong>Cifrado (Encryption):</strong> Convertir texto plano (legible) en texto cifrado (ilegible) usando un algoritmo matemático y una llave criptográfica.</li>
+                    <li><strong>BitLocker:</strong> Herramienta nativa de Windows para cifrar el disco duro completo. Si roban la laptop y sacan el disco físico para leerlo en otra PC, solo verán basura incomprensible.</li>
+                </ul>
+
+                <h4 class="font-bold text-secondary mb-3"><i class="fa-solid fa-laptop-code mr-2"></i>5 Ejercicios Prácticos:</h4>
+                <ol class="text-sm text-slate-700 list-decimal ml-6 space-y-3">
+                    <li><strong>Implementación NTFS (Permisos de Lectura):</strong> Crea una carpeta "Auditoria_RH". Da clic derecho > Propiedades > Seguridad. Elimina al grupo "Usuarios" y agrega a un usuario específico dándole solo permiso de "Lectura". Comprueba que no puede borrar archivos dentro.</li>
+                    <li><strong>El Peligro del Control Total:</strong> Explica, probando en el laboratorio, por qué darle permisos de "Control Total" a un empleado estándar sobre una carpeta compartida de red facilita la propagación instantánea de Ransomware.</li>
+                    <li><strong>Cifrado EFS Nivel Archivo:</strong> Crea un documento de texto "Misiones_Drones.txt". Clic derecho > Propiedades > Opciones Avanzadas > "Cifrar contenido para proteger datos". Aplica. Inicia sesión con otra cuenta de usuario local e intenta abrirlo. Reporta el mensaje de "Acceso Denegado".</li>
+                    <li><strong>Investigación Bitlocker (Full Disk Encryption):</strong> Investiguen qué es el chip TPM de las tarjetas madre modernas y cómo hace sinergia con BitLocker para arrancar la PC de manera blindada.</li>
+                    <li><strong>Destrucción de Accesos (Revocación):</strong> Simulen el despido de un empleado. Procedan a deshabilitar su cuenta de usuario en <code>compmgmt.msc</code> (No borrarla, solo deshabilitarla por temas forenses). Escriban la justificación técnica.</li>
+                </ol>
+            </div>
+
+            <div id="sem9" class="tab-content bg-white p-6 md:p-8 rounded-2xl border border-slate-200 shadow-sm">
+                <h3 class="text-xl font-bold text-dark mb-4">Configuración de Red: Firewalls Locales y Perimetrales</h3>
+                
+                <h4 class="font-bold text-secondary mb-2"><i class="fa-solid fa-book-journal-whills mr-2"></i>Glosario Técnico:</h4>
+                <ul class="text-sm text-slate-600 list-disc ml-6 space-y-2 mb-6">
+                    <li><strong>Firewall (Cortafuegos):</strong> Filtro de red que examina paquetes entrantes y salientes, y decide si los bloquea o deja pasar basado en un set de reglas IP/Puerto.</li>
+                    <li><strong>Regla Inbound / Outbound:</strong> Regla de entrada (lo que intenta conectarse a ti) vs de salida (lo que tú intentas mandar a internet). Un buen Firewall bloquea por defecto todo lo que entra.</li>
+                    <li><strong>Puertos (Ports):</strong> Puertas virtuales. Ej: El puerto 80 es para páginas web (HTTP). El 3389 es RDP (Escritorio Remoto), puerto favorito de los atacantes, debe cerrarse siempre.</li>
+                </ul>
+
+                <h4 class="font-bold text-secondary mb-2"><i class="fa-solid fa-sitemap mr-2"></i>Sintaxis Típica de Regla Firewall de Producción:</h4>
+                <div class="bg-slate-900 text-slate-300 text-xs font-mono p-4 rounded-lg mb-6">
+                    [REGLA DE BLOQUEO RDP]<br>
+                    Nombre: BLOCK_REMOTE_DESK<br>
+                    Dirección: IN (Entrada)<br>
+                    Protocolo: TCP<br>
+                    Puerto Local: 3389<br>
+                    Acción: BLOCK (Bloquear Conexión)<br>
+                    Perfiles: Dominio, Privado, Público
+                </div>
+
+                <h4 class="font-bold text-secondary mb-3"><i class="fa-solid fa-laptop-code mr-2"></i>5 Ejercicios Prácticos:</h4>
+                <ol class="text-sm text-slate-700 list-decimal ml-6 space-y-3">
+                    <li><strong>Defensa Activa (Windows Defender Firewall):</strong> Abre `wf.msc`. Crea una nueva regla de entrada. Bloquea el puerto TCP 21 (FTP). Intenta usar un cliente FTP para comprobar que el sistema a nivel de kernel rechaza la conexión.</li>
+                    <li><strong>Escaneo de Puertos Enemigo (Nmap / Comando Netstat):</strong> Abre la terminal (cmd o powershell) y escribe `netstat -ano`. Analicen la lista de puertos en estado "LISTENING". Estos son los huecos activos en su armadura que esperan conexión exterior.</li>
+                    <li><strong>Aislamiento de Programas (Bloqueo Outbound):</strong> Crea una regla de salida en el firewall. En vez de bloquear un puerto, bloquea el archivo `.exe` del navegador web (Edge/Chrome). Intenta navegar. Acabas de aprender cómo silenciar malware que intenta robar datos hacia fuera.</li>
+                    <li><strong>Análisis Perimetral:</strong> Dibuja un diagrama de red básico de una empresa (Nube -> Router ISP -> Firewall Perimetral -> Switch Interno -> PC Usuario). Explica dónde se coloca físicamente un cortafuegos de hardware (como Fortinet o pfSense).</li>
+                    <li><strong>Reglas por Defecto de Negación (Default Deny):</strong> Explica este concepto de ingeniería militar: "Se bloquea absolutamente todo tráfico de entrada. Únicamente se crea una regla para permitir (Allow) los puertos estrictamente vitales (ej. 443)".</li>
+                </ol>
+            </div>
+
+            <div id="sem10" class="tab-content bg-white p-6 md:p-8 rounded-2xl border border-slate-200 shadow-sm">
+                <h3 class="text-xl font-bold text-dark mb-4">Protección Dinámica: Antivirus, Antispyware e IDS</h3>
+                
+                <h4 class="font-bold text-secondary mb-2"><i class="fa-solid fa-book-journal-whills mr-2"></i>Glosario Técnico:</h4>
+                <ul class="text-sm text-slate-600 list-disc ml-6 space-y-2 mb-6">
+                    <li><strong>Firmas vs Heurística:</strong> Los antivirus viejos detectaban virus buscando una "firma" (huella digital) conocida en su base de datos. Los AV modernos usan "Heurística" (IA) para detectar comportamiento anómalo aunque el virus sea totalmente nuevo (Zero-Day).</li>
+                    <li><strong>IDS / IPS (Intrusion Detection/Prevention System):</strong> Software o hardware (como Snort) que lee en tiempo real la "forma" de los paquetes de red, olfateando tráfico de fuerza bruta o escaneos sospechosos y cortando la conexión instantáneamente (IPS).</li>
+                    <li><strong>Falsos Positivos:</strong> Cuando el antivirus marca como virus a un programa legítimo de la escuela porque tiene comportamiento extraño (ej. un script de Python compilado).</li>
+                </ul>
+
+                <h4 class="font-bold text-secondary mb-3"><i class="fa-solid fa-laptop-code mr-2"></i>5 Ejercicios Prácticos:</h4>
+                <ol class="text-sm text-slate-700 list-decimal ml-6 space-y-3">
+                    <li><strong>Políticas de Escaneo Activo:</strong> Accede a las configuraciones avanzadas del antivirus local. Documenta el proceso para programar un "Examen Completo" (Full Scan) todos los viernes a las 6:00 PM.</li>
+                    <li><strong>El Archivo EICAR:</strong> El EICAR es un archivo de texto seguro mundialmente usado para probar si el motor de un antivirus está activo. Descarga la cadena de texto oficial (búscala online), guárdala en un `.txt` y observa cómo el antivirus lo aniquila en milisegundos.</li>
+                    <li><strong>Gestión de Exclusiones (Whitelisting):</strong> Tu script de pilotaje de drones fue bloqueado por el antivirus local. Crea una regla de "Exclusión" de carpeta específica para que el motor ignore esa zona del disco duro.</li>
+                    <li><strong>Detección de Spyware (Keyloggers):</strong> Investiga el funcionamiento lógico de un "Keylogger" (Spyware que captura todo lo tecleado). Explica cómo interfiere el módulo de "Protección de Identidad/Antispyware" a nivel de memoria RAM para bloquearlo.</li>
+                    <li><strong>Investigación de Snort (NIDS):</strong> Realiza una ficha de media hoja sobre "Snort" (software libre). Explica cómo utiliza reglas escritas en texto para alertar si detecta 100 intentos fallidos de logeo al puerto SSH de un servidor.</li>
+                </ol>
+            </div>
+
+            <div id="sem11" class="tab-content bg-white p-6 md:p-8 rounded-2xl border border-slate-200 shadow-sm">
+                <h3 class="text-xl font-bold text-dark mb-4">Túneles Seguros: Protocolos, IPSEC y Criptografía de Red</h3>
+                
+                <h4 class="font-bold text-secondary mb-2"><i class="fa-solid fa-book-journal-whills mr-2"></i>Glosario Técnico:</h4>
+                <ul class="text-sm text-slate-600 list-disc ml-6 space-y-2 mb-6">
+                    <li><strong>HTTP vs HTTPS:</strong> En HTTP todo el tráfico web (incluyendo passwords) viaja en texto plano por el aire. En HTTP<strong>S</strong> (sobre SSL/TLS), todo el paquete de red viaja fuertemente cifrado mediante matemáticas de clave pública/privada.</li>
+                    <li><strong>VPN (Virtual Private Network):</strong> Extiende la red privada de tu empresa a través del internet público, creando un "tubo" cifrado desde la casa del empleado hasta el servidor central.</li>
+                    <li><strong>IPSEC (IP Security):</strong> Conjunto de protocolos que autentica y cifra <em>cada uno</em> de los paquetes de datos que fluyen por la conexión VPN.</li>
+                    <li><strong>Man-in-the-Middle (MITM):</strong> Ataque donde el hacker se sienta "en medio" del router y la PC de la víctima, robando todo el tráfico de la red WiFi abierta del Starbucks.</li>
+                </ul>
+
+                <h4 class="font-bold text-secondary mb-2"><i class="fa-solid fa-sitemap mr-2"></i>Inspección Criptográfica del Navegador:</h4>
+                <div class="bg-slate-900 text-slate-300 text-xs font-mono p-4 rounded-lg mb-6">
+                    [CERTIFICADO SSL/TLS DE BANCO]<br>
+                    Navegador verifica: ¿La llave pública coincide con el dominio real?<br>
+                    Algoritmo: AES-256 (Cifrado militar simétrico irrompible).<br>
+                    Resultado: El Candado Verde. Ningún ISP, Hacker o Gobierno puede ver la contraseña en tránsito.
+                </div>
+
+                <h4 class="font-bold text-secondary mb-3"><i class="fa-solid fa-laptop-code mr-2"></i>5 Ejercicios Prácticos:</h4>
+                <ol class="text-sm text-slate-700 list-decimal ml-6 space-y-3">
+                    <li><strong>Auditoría de Certificados X.509:</strong> Abre tu cuenta de correo o banco en el navegador. Haz clic en el candado junto a la URL y mira la información del Certificado. Documenta quién lo emitió (CA - Autoridad Certificadora) y cuándo expira.</li>
+                    <li><strong>El Peligro del WiFi Abierto (MITM Simulado):</strong> Haz un diagrama explicando detalladamente cómo, sin una VPN o HTTPS, un intruso con el software `Wireshark` en una red pública puede interceptar la foto confidencial que el dron está transmitiendo a la base.</li>
+                    <li><strong>Análisis del Protocolo SSH vs Telnet:</strong> Investiguen. Telnet es un protocolo antiguo para controlar servidores; SSH (Secure Shell) es el moderno. Expliquen la diferencia estructural (cifrado por túnel) entre usar el puerto 23 vs el puerto 22.</li>
+                    <li><strong>Generación de Llaves Públicas (PGP/SSH-Keygen):</strong> En Linux/Colab investiga cómo funciona el comando `ssh-keygen`. Entiende que esto crea dos archivos: uno privado (que nunca debes compartir) y uno público (el candado abierto). Escribe cómo previene el robo de contraseñas.</li>
+                    <li><strong>Manual Técnico Final RA 2.1 (Entregable):</strong> Compila en un documento PDF todas las capturas y configuraciones que hicieron: Política de Contraseñas, Regla de Firewall, Exclusión de Antivirus y revisión de Certificado HTTPS. Este es su manual de Hardening Básico.</li>
+                </ol>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        function openTab(tabId, btn) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('button[role="tab"]').forEach(b => {
+                b.classList.remove('text-secondary', 'border-secondary');
+                b.classList.add('text-slate-500', 'border-transparent');
+            });
+            document.getElementById(tabId).classList.add('active');
+            btn.classList.remove('text-slate-500', 'border-transparent');
+            btn.classList.add('text-secondary', 'border-secondary');
+        }
+        document.querySelectorAll('button[onclick^="openTab"]').forEach(btn => btn.setAttribute('role', 'tab'));
+    </script>
+</body>
+</html>
