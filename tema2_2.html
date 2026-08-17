@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RA 2.2 | Seguridad Informática</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = { theme: { extend: { colors: { secondary: '#059669', dark: '#0f172a' }, fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['Fira Code', 'monospace'] } } } }
+    </script>
+    <style> 
+        body { background-color: #ffffff; color: #334155; } 
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="font-sans antialiased flex flex-col min-h-screen">
+
+    <nav class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-4 flex justify-between items-center h-16">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-eye text-2xl text-secondary"></i>
+                <span class="font-bold text-lg text-dark">RA 2.2</span>
+            </div>
+            <div class="space-x-4">
+                <a href="tema2_1.html" class="text-sm text-slate-500 hover:text-secondary transition"><i class="fa-solid fa-arrow-left"></i> Atrás</a>
+                <a href="tema2_3.html" class="text-sm text-secondary font-bold transition">Siguiente <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow max-w-4xl mx-auto w-full px-4 py-10">
+        <header class="mb-10">
+            <div class="inline-block bg-secondary text-white text-xs font-bold px-3 py-1 rounded-full mb-3">10 Horas | Semanas 12 a 14</div>
+            <h1 class="text-3xl font-extrabold text-dark mb-4">Seguimiento Operativo y Monitoreo Activo</h1>
+            <p class="text-lg text-slate-600 mb-6">El trabajo del Blue Team no termina al configurar el Firewall. La Fase de "Check" de la ISO requiere que vigilemos como halcones. Si un intruso o un empleado infectado logró penetrar nuestras defensas, las bitácoras del sistema (Logs) serán nuestra única pista (Huella Forense) para atraparlo y desconectarlo.</p>
+            
+            <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl shadow-sm">
+                <p class="text-sm text-slate-800"><strong>El peor error:</strong> Tener sistemas de monitoreo activos que guardan gigabytes de alertas diarias de virus, pero ningún analista de seguridad que las lea. El monitoreo pasivo no es seguridad.</p>
+            </div>
+        </header>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 text-dark border-b pb-2"><i class="fa-solid fa-clipboard-list text-secondary mr-2"></i>Monitoreo y Resiliencia</h2>
+            
+            <div class="flex overflow-x-auto border-b border-slate-200 mb-6" role="tablist">
+                <button class="px-6 py-3 font-bold text-sm text-secondary border-b-2 border-secondary whitespace-nowrap focus:outline-none" onclick="openTab('sem12', this)">Semana 12: Logs y Bitácoras</button>
+                <button class="px-6 py-3 font-bold text-sm text-slate-500 border-b-2 border-transparent hover:text-secondary whitespace-nowrap transition focus:outline-none" onclick="openTab('sem13', this)">Semana 13: Respaldos Críticos</button>
+                <button class="px-6 py-3 font-bold text-sm text-slate-500 border-b-2 border-transparent hover:text-secondary whitespace-nowrap transition focus:outline-none" onclick="openTab('sem14', this)">Semana 14: Reportes de Estatus</button>
+            </div>
+
+            <div id="sem12" class="tab-content active bg-white p-6 md:p-8 rounded-2xl border border-slate-200 shadow-sm">
+                <h3 class="text-xl font-bold text-dark mb-4">Informática Forense: Visor de Eventos y Logs</h3>
+                
+                <h4 class="font-bold text-secondary mb-2"><i class="fa-solid fa-book-journal-whills mr-2"></i>Glosario Técnico:</h4>
+                <ul class="text-sm text-slate-600 list-disc ml-6 space-y-2 mb-6">
+                    <li><strong>Log (Bitácora de registro):</strong> Archivo de texto plano (intocable) que el sistema operativo escribe milisegundo a milisegundo reportando todo: quién entró, qué falló, y qué regla del firewall se rompió.</li>
+                    <li><strong>Visor de Eventos (Event Viewer):</strong> Interfaz nativa de Windows (<code>eventvwr.msc</code>) para leer los logs de Seguridad, Sistema y Aplicaciones.</li>
+                    <li><strong>Log de Seguridad:</strong> Clasifica los eventos forenses en "Auditoría de Aciertos" (login correcto) y "Auditoría de Errores" (login fallido, intento de hackeo de cuenta).</li>
+                </ul>
+
+                <h4 class="font-bold text-secondary mb-2"><i class="fa-solid fa-sitemap mr-2"></i>Análisis Estructural de un Evento de Windows:</h4>
+                <div class="bg-slate-900 text-slate-300 text-xs font-mono p-4 rounded-lg mb-6">
+                    [EVENTO ID: 4625 (Error de inicio de sesión)]<br>
+                    Cuenta de asunto: SYSTEM<br>
+                    Información de cuenta con error de logeo:<br>
+                    &nbsp;&nbsp;Nombre de cuenta: admin_bd<br>
+                    &nbsp;&nbsp;Origen de red: 192.168.1.55 (Atacante detectado)<br>
+                    Tipo de inicio de sesión: 3 (Por red)<br>
+                    CONCLUSIÓN ANALISTA: Intento de Fuerza Bruta RDP desde la IP .55.
+                </div>
+
+                <h4 class="font-bold text-secondary mb-3"><i class="fa-solid fa-laptop-code mr-2"></i>5 Ejercicios Prácticos:</h4>
+                <ol class="text-sm text-slate-700 list-decimal ml-6 space-y-3">
+                    <li><strong>Navegación Forense (Event Viewer):</strong> Abre <code>eventvwr.msc</code> en tu PC. Navega a "Registros de Windows > Seguridad". Identifica y documenta qué significa el Ícono del candado (Auditoría exitosa).</li>
+                    <li><strong>Generar y Cazar un Evento de Falla (Event 4625):</strong> Cierra sesión en Windows. Intenta entrar con una contraseña falsa a propósito. Entra con la real, abre el Visor de Eventos, busca el Evento de "Error de Auditoría" en la parte superior y anota el Event ID.</li>
+                    <li><strong>Monitoreo de Aplicaciones (Servicios de Red):</strong> Ve al log de "Sistema" y busca errores (Círculo rojo con una X). Documenta un error crítico que haya pasado en los últimos días y busca en internet qué significa el código de error para diagnosticar el hardware.</li>
+                    <li><strong>Cacería de IPs (Log de Firewall):</strong> Investiga cómo habilitar la recolección de Logs de paquetes denegados en el Firewall de Windows (Ruta: Avanzado -> Propiedades). Esto generará un archivo pfirewall.log. Visualiza los IPs chinos o rusos rebotando en el muro.</li>
+                    <li><strong>Correlación de Logs (SIEM Básico):</strong> Expliquen el concepto de "SIEM" (Security Information and Event Management). ¿Por qué una empresa con 500 computadoras no puede usar el Visor de Eventos manual y requiere centralizar todos los logs en un servidor maestro?</li>
+                </ol>
+            </div>
+
+            <div id="sem13" class="tab-content bg-white p-6 md:p-8 rounded-2xl border border-slate-200 shadow-sm">
+                <h3 class="text-xl font-bold text-dark mb-4">Garantía de Disponibilidad: Políticas de Respaldo Físico</h3>
+                
+                <h4 class="font-bold text-secondary mb-2"><i class="fa-solid fa-book-journal-whills mr-2"></i>Glosario Técnico:</h4>
+                <ul class="text-sm text-slate-600 list-disc ml-6 space-y-2 mb-6">
+                    <li><strong>Backup (Respaldo):</strong> Copia de seguridad exacta y versionada de una base de datos o sistema de archivos crítico (Servidores, Códigos de vuelo de drones).</li>
+                    <li><strong>La Regla del 3-2-1:</strong> Ley de oro de la ciberseguridad. Mantener <strong>3</strong> copias de los datos importantes, en <strong>2</strong> soportes o medios de almacenamiento diferentes, con <strong>1</strong> copia totalmente externa (nube o bóveda bancaria).</li>
+                    <li><strong>Ransomware "Air-Gap":</strong> Los ransomware modernos detectan los discos duros externos USB conectados y los cifran también. El "Air-Gap" requiere que el disco de respaldo se desconecte físicamente y se guarde offline.</li>
+                </ul>
+
+                <h4 class="font-bold text-secondary mb-3"><i class="fa-solid fa-laptop-code mr-2"></i>5 Ejercicios Prácticos:</h4>
+                <ol class="text-sm text-slate-700 list-decimal ml-6 space-y-3">
+                    <li><strong>Auditoría de Tareas Programadas (Task Scheduler):</strong> Abre `taskschd.msc`. Documenta cómo se programaría un script simple de copiado local para que se ejecute invisiblemente todos los domingos a las 2 AM sin interacción humana.</li>
+                    <li><strong>Simulacro Regla 3-2-1:</strong> Escriban el diseño de arquitectura 3-2-1 para proteger el servidor de la preparatoria (Ej. Disco local RAID, Disco duro externo de cinta LTO, y una copia cifrada en OneDrive).</li>
+                    <li><strong>Respaldo Cifrado:</strong> Un respaldo sin contraseña es un regalo para el hacker. Investiguen cómo comprimir y cifrar una base de datos SQL con "AES-256" usando 7-Zip antes de enviarla a la nube externa.</li>
+                    <li><strong>Pruebas de Restauración (Recovery Test):</strong> De nada sirve un backup si está corrupto. Redacten la política escrita del Plan de Seguridad donde se obligue a "Simular una restauración en un entorno aislado (Sandbox) el primer día de cada mes".</li>
+                    <li><strong>Instantáneas de Volumen (Shadow Copies / VSS):</strong> Investiguen el servicio "VSS" nativo de Windows. Expliquen en clase cómo algunos ransomware utilizan comandos ocultos (<code>vssadmin delete shadows</code>) para destruir los respaldos internos antes de secuestrar la máquina.</li>
+                </ol>
+            </div>
+
+            <div id="sem14" class="tab-content bg-white p-6 md:p-8 rounded-2xl border border-slate-200 shadow-sm">
+                <h3 class="text-xl font-bold text-dark mb-4">Ejecución y Modificación de Configuraciones</h3>
+                
+                <h4 class="font-bold text-secondary mb-2"><i class="fa-solid fa-book-journal-whills mr-2"></i>Glosario Técnico:</h4>
+                <ul class="text-sm text-slate-600 list-disc ml-6 space-y-2 mb-6">
+                    <li><strong>Baseline (Línea Base):</strong> La "foto" inicial del servidor cuando estaba limpio, sano y recién configurado. Todo monitoreo compara el estado actual contra la Línea Base.</li>
+                    <li><strong>Gestión de Cambios (Change Management):</strong> En Ciberseguridad nadie apaga un firewall ni cambia un puerto sin documentarlo primero. Las modificaciones "silenciosas" son el origen de las caídas de sistema.</li>
+                    <li><strong>Reporte de Estado (Dashboard Ejecutivo):</strong> Un resumen digerido (en gráficas o tablas) que se entrega a gerencia demostrando que el Firewall está parando X amenazas, y los respaldos están al X%.</li>
+                </ul>
+
+                <h4 class="font-bold text-secondary mb-3"><i class="fa-solid fa-laptop-code mr-2"></i>5 Ejercicios Prácticos:</h4>
+                <ol class="text-sm text-slate-700 list-decimal ml-6 space-y-3">
+                    <li><strong>Formato de Control de Cambios:</strong> Diseñen en Word un formato oficial de "Solicitud de Cambio en Firewall". Debe tener: Fecha, Ingeniero responsable, IP/Puerto a modificar, Riesgo (Bajo, Alto), y firma de Autorización del CISO.</li>
+                    <li><strong>Elaboración de Reporte Periódico de Antivirus:</strong> Redacten un reporte de 1 página simulado. "Para: Dirección General. Resumen: Esta semana el filtro local detectó 4 eventos de troyanos. Resoluciones aplicadas: Dispositivos en cuarentena y escaneo completo realizado".</li>
+                    <li><strong>Verificación Cruzada de Archivos (Hash / Checksum):</strong> Un pilar de la Integridad (CIA). Descarguen una herramienta como `CertUtil` en la terminal (comando: `certutil -hashfile archivo.txt SHA256`). Muestren cómo el cálculo criptográfico cambia drásticamente si le agregas un simple espacio al texto.</li>
+                    <li><strong>Monitoreo Activo vs Pasivo:</strong> Abran el Administrador de Tareas (Ctrl+Shift+Esc), vayan a la pestaña de "Rendimiento". Monitoreen la red por 2 minutos. Expliquen la diferencia entre leer un log viejo (pasivo) y estar vigilando la gráfica del ancho de banda esperando una saturación DDOS.</li>
+                    <li><strong>Checklist Operativo (Entregable RA 2.2):</strong> Diseñen una hoja de cotejo técnica (Checklist) para el "Vigilante Nocturno del Site" que debe rellenarse diario. Casillas ejemplo: [ ] ¿Luces del Switch verdes?, [ ] ¿Temperatura menor a 24C?, [ ] ¿Respaldos automáticos mostraron error en la pantalla?</li>
+                </ol>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        function openTab(tabId, btn) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('button[role="tab"]').forEach(b => {
+                b.classList.remove('text-secondary', 'border-secondary');
+                b.classList.add('text-slate-500', 'border-transparent');
+            });
+            document.getElementById(tabId).classList.add('active');
+            btn.classList.remove('text-slate-500', 'border-transparent');
+            btn.classList.add('text-secondary', 'border-secondary');
+        }
+        document.querySelectorAll('button[onclick^="openTab"]').forEach(btn => btn.setAttribute('role', 'tab'));
+    </script>
+</body>
+</html>
